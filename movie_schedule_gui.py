@@ -7,6 +7,7 @@ import time
 import tkinter as tk
 
 import requests
+import multiprocessing
 
 url_root = 'http://www.otfsenter.com/api/movie/'
 
@@ -37,10 +38,10 @@ def parse_server(now_name):
         schedule = item.get('schedule', None)
         names.append(name)
         if now_name == name:
-            return str(index), schedule
+            return str(index), name, schedule
 
     if now_name not in names:
-        return None, None
+        return None, None, None
 
 
 class Windows(tk.Tk):
@@ -56,14 +57,16 @@ class Windows(tk.Tk):
         self.label_schedule = tk.Label(self, text='Schedule')
         self.entry_name = tk.Entry(self, textvariable=self.val_name)
         self.entry_schedule = tk.Entry(self, textvariable=self.val_schedule)
-        self.button = tk.Button(self, text='Start!',
-                                command=self.judge)
+        # self.button = tk.Button(self, text='Start!',
+        #                         command=self.judge)
 
         self.label_name.grid(row=0, column=0)
         self.label_schedule.grid(row=1, column=0)
         self.entry_name.grid(row=0, column=1)
         self.entry_schedule.grid(row=1, column=1)
-        self.button.grid(row=2, column=0)
+        # self.button.grid(row=2, column=0)
+
+        self.after_idle(self.judge)
 
         self.mainloop()
 
@@ -85,7 +88,12 @@ class Windows(tk.Tk):
             now_name = now_dict.get('name', None)
             now_schedule = now_dict.get('schedule', None)
 
-            server_index, server_schedule = parse_server(now_name)
+            server_index, server_name, server_schedule = parse_server(now_name)
+
+            if not now_name and not now_schedule:
+                server_index, server_name, server_schedule = parse_server('shameless')
+                self.val_name.set(server_name)
+                self.val_schedule.set(server_schedule)
 
             if now_schedule and now_name:
                 if server_index:
