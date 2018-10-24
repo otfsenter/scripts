@@ -79,12 +79,12 @@ cd /root/code/
 git clone https://github.com/otfsenter/django_blog.git
 cd /root/code/django_blog
 touch  uwsgi.log 
+pip3 install -r requirements.txt
 
 chmod +x -R /root/code
 
 
-echo "collectstatic and create superuser"
-echo "nginx server name"
+echo "migrate, collectstatic and create superuser"
 echo "then start uwsgi and nginx"
 
 
