@@ -80,6 +80,8 @@ git clone https://github.com/otfsenter/django_blog.git
 cd /root/code/django_blog
 touch  uwsgi.log 
 
+chmod +x -R /root/code
+
 
 echo "collectstatic and create superuser"
 echo "nginx server name"
