@@ -12,6 +12,7 @@ yum -y install python36u-pip
 yum -y install python36u-devel
 ln -s /usr/bin/python3.6 /usr/bin/python3
 ln -s /usr/bin/pip3.6 /usr/bin/pip3
+pip3 install --upgrade pip
 pip3 install django
 pip3 install uwsgi
 
@@ -19,7 +20,7 @@ pip3 install uwsgi
 cat << EOF > /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo
-baseurl=http://nginx.org/packages/centos/7/$basearch/
+baseurl=http://nginx.org/packages/centos/7/\$basearch/
 gpgcheck=0
 enabled=1
 EOF
@@ -40,7 +41,7 @@ server {
     # the port your site will be served on
     listen      80;
     # the domain name it will serve for
-    server_name server_name; # substitute your machine's IP address or FQDN
+    server_name $1; # substitute your machine's IP address or FQDN
     access_log  /var/log/nginx/access.log;
     error_log   /var/log/nginx/error.log;
     charset     utf-8;
@@ -76,30 +77,11 @@ EOF
 mkdir -p /root/code/
 cd /root/code/
 git clone https://github.com/otfsenter/django_blog.git
-touch  uwsgi.log uwsgi.sock uwsgi.ini uwsgi.pid
-
-cat << EOF > uwsgi.ini
-[uwsgi]
-chdir=/root/code/django_blog
-module=django_blog.wsgi:application
-workers=5
-pidfile=/root/code/django_blog/uwsgi.pid
-http=127.0.0.1:8001
-static-map=/static=/root/code/django_blog/static
-uid=root
-gid=root
-master=true
-vacuum=true
-thunder-lock=true
-enable-threads=true
-harakiri=30
-post-buffering=4096
-daemonize=/root/code/django_blog/uwsgi.log
-socket=/root/code/django_blog/uwsgi.sock
-EOF
+cd /root/code/django_blog
+touch  uwsgi.log 
 
 
-echo "collectstatic"
+echo "collectstatic and create superuser"
 echo "nginx server name"
 echo "then start uwsgi and nginx"
 
