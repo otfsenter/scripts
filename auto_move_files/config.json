@@ -1,0 +1,41 @@
+{
+  "movie": {
+    "keywords": {
+      "prefix": [
+        "movie"
+      ],
+      "suffix": [
+        "mp4",
+        "mkv",
+        "rmvb"
+      ]
+    },
+    "folder": "movie"
+  },
+  "picture": {
+    "keywords": {
+      "prefix": [
+        "pic"
+      ],
+      "suffix": [
+        "png",
+        "jpg"
+      ]
+    },
+    "folder": "pic"
+  },
+  "novel": {
+    "keywords": {
+      "prefix": [
+        "novel"
+      ],
+      "suffix": [
+        "txt"
+      ]
+    },
+    "folder": "novel"
+  },
+  "other": {
+    "folder": "other"
+  }
+}
