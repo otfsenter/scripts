@@ -1,82 +1,88 @@
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
-
 import os
 import json
 import time
+
+try:
+    from watchdog.observers import Observer
+    from watchdog.events import FileSystemEventHandler
+except:
+    os.system('pip install watchdog')
+    from watchdog.observers import Observer
+    from watchdog.events import FileSystemEventHandler
+
 import shutil
-from custom import file
-
-path_root = r'C:\PycharmProjects\move_files'
-folder_to_track = r'C:\PycharmProjects\move_files\downloads'
-file_json = r'C:\PycharmProjects\move_files\config.json'
 
 
-def get_des_folder(filname):
-    data_dict = file.read_json(file_json)
-    for category, keywords_folder_dict in data_dict.items():
-        keywords_dict = keywords_folder_dict.get('keywords', {})
-        prefix_list = keywords_dict.get('prefix', [])
-        suffix_list = keywords_dict.get('suffix', [])
-        folder = keywords_folder_dict.get('folder', '')
+def get_config_data():
+    with open('config.json', 'r') as f:
+        config_dict = json.load(f)
+    return config_dict
 
-        if not keywords_dict:
-            continue
-        if not folder:
-            continue
 
-        if not prefix_list:
-            continue
-        if not suffix_list:
-            continue
+SOURCE_DIRS =  get_config_data()['source_dir']
+DESTINATION_DIRS =  get_config_data()['source_dir']
+CLASSIFICAITON_DIRS =  get_config_data()['classifications'].keys()
+
+
+def create_classification_dir():
+    for d in CLASSIFICAITON_DIRS:
+        d = SOURCE_DIRS + '\\' + d
+        try:
+            os.mkdir(d)
+            print('创建新文件夹%s' % d)
+        except:
+            # 忽略已存在文件夹
+            pass
+
+
+def classify_file(file_name):
+    folder_des = 'others'
+    for category, keywords in get_config_data()['classifications'].items():
+        suffix_list = keywords['suffix']
+        prefix_list = keywords['prefix']
+        for suffix in suffix_list:
+            if suffix != '' and file_name.endswith(suffix):
+                folder_des = category
+                #print('%s 属于分类 %s' % ( file_name, category))
+                return folder_des
 
         for prefix in prefix_list:
-            if str(filname).startswith(prefix):
-                folder_des = folder
+            if prefix != '' and file_name.startswith(prefix):
+                folder_des = category
+                #print('%s 属于分类 %s' % (file_name, category))
+                return folder_des
 
-        for suffix in suffix_list:
-            if str(filname).endswith(suffix):
-                folder_des = folder
+    #print(folder_des)
+    return folder_des
+    
+
+def move_multiple_times(source_dir, destination_dir):
     try:
-        return folder_des
-    except UnboundLocalError:
-        folder_des = data_dict.get('other', {}).get('folder', '')
-        return folder_des
-
-
-def move_multiple_times(file_src, file_des):
-    try:
-        shutil.move(file_src, file_des)
+        shutil.move(source_dir, destination_dir)
     except PermissionError:
         time.sleep(1)
-        move_multiple_times(file_src, file_des)
+        move_multiple_times(source_dir, destination_dir)
 
 
 class MyHandler(FileSystemEventHandler):
     def on_any_event(self, event):
-        for filename in os.listdir(folder_to_track):
-            file_src = os.path.join(folder_to_track, filename)
-
-            folder = get_des_folder(filename)
-            file_des = os.path.join(path_root, folder, filename)
-
-            print(file_src)
-            print(file_des)
-
-            # if folder == 'movie':
-            #     time.sleep(10)
-            # if folder == 'pic':
-            #     time.sleep(1)
-            # if folder == 'novel':
-            #     time.sleep(1)
-
-            move_multiple_times(file_src, file_des)
+        for file_name in os.listdir(SOURCE_DIRS):
+            # 过滤文件夹
+            file_abs_dir = SOURCE_DIRS + '\\' + file_name
+            if os.path.isdir(file_abs_dir):
+                continue
+            source_dir = os.path.join(DESTINATION_DIRS, file_name)
+            folder = classify_file(file_name)
+            destination_dir = os.path.join(DESTINATION_DIRS, folder, file_name)
+            print('source_dir', source_dir)
+            print('destination_dir', destination_dir)
+            move_multiple_times(source_dir, destination_dir)
 
 
+create_classification_dir()
 event_handler = MyHandler()
 observer = Observer()
-observer.schedule(event_handler, folder_to_track, recursive=True)
-
+observer.schedule(event_handler, DESTINATION_DIRS, recursive=True)
 observer.start()
 
 try:
@@ -85,12 +91,3 @@ try:
 except KeyboardInterrupt as e:
     observer.stop()
     observer.join()
-
-# def main():
-#     filename = '1.txt'
-#
-#     print(file_des)
-#
-#
-# if __name__ == '__main__':
-#     main()

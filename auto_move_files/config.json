@@ -1,41 +1,69 @@
 {
-  "movie": {
-    "keywords": {
-      "prefix": [
-        "movie"
-      ],
+  "source_dir": "C:\\download",
+  "destination_dir": "C:\\download",
+  "classifications": {
+    "videos": {
       "suffix": [
         "mp4",
         "mkv",
         "rmvb"
+      ],
+      "prefix": [
+        ""
       ]
     },
-    "folder": "movie"
-  },
-  "picture": {
-    "keywords": {
-      "prefix": [
-        "pic"
-      ],
+    "pictures": {
       "suffix": [
+        "jpg",
         "png",
-        "jpg"
-      ]
-    },
-    "folder": "pic"
-  },
-  "novel": {
-    "keywords": {
-      "prefix": [
-        "novel"
+        "jpeg",
+        "gif"
       ],
-      "suffix": [
-        "txt"
+      "prefix": [
+        ""
       ]
     },
-    "folder": "novel"
-  },
-  "other": {
-    "folder": "other"
+    "documents": {
+      "suffix": [
+        "pdf",
+        "doc",
+        "docx",
+        "xls",
+        "xlsx",
+        "ppt",
+        "pptx",
+        "csv",
+        "yaml",
+        "yml",
+        "txt"
+      ],
+      "prefix": [
+        ""
+      ]
+    },
+    "packages": {
+      "suffix": [
+        "tar",
+        "tgz",
+        "gz",
+        "7z",
+        "rar",
+        "jar",
+        "zip",
+        "exe",
+        "msi"
+      ],
+      "prefix": [
+        ""
+      ]
+    },
+    "others": {
+      "suffix": [
+        ""
+      ],
+      "prefix": [
+        ""
+      ]
+    }
   }
 }
