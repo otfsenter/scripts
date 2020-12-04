@@ -1,1 +1,1 @@
-# Python execrise
+# Python execrise scripts
