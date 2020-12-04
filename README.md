@@ -1,19 +1,19 @@
 # Python execrise scripts
 
-## auto move files
+## [auto move files](https://github.com/otfsenter/scripts/tree/master/auto_move_files)
 
 自动移动归档文件当指定的文件夹
 
 auto mv files to special directory
 
-## idle
+## [idlepig](https://github.com/otfsenter/scripts/tree/master/idlepig)
 
 nginx.sh 
 
 * rm idle container exist
 * start nginx docker container 
 
-## blog
+## [blog](https://github.com/otfsenter/scripts/tree/master/blog)
 
 * .nojekyll
 
@@ -23,22 +23,22 @@ nginx.sh
 
 网站标签左边的图片
 
-## java
+## [java](https://github.com/otfsenter/scripts/tree/master/java)
 
 * settings.xml
 
 aliyun mirros configuration of maven
 
 
-## aliyun.conf
+## [aliyun.conf](https://github.com/otfsenter/scripts/blob/master/aliyun.conf)
 
 the configuration of nginx in aliyun server with https
 
-## delimiters.py
+## [delimiters.py](https://github.com/otfsenter/scripts/blob/master/delimiters.py)
 
 自定义实现的多个分隔符分割一段字符串
 
-## docker-compose.yml
+## [docker-compose.yml](https://github.com/otfsenter/scripts/blob/master/docker-compose.yml)
 
 启动 wordpress 容器的配置，包含 mysql
 
