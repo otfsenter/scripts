@@ -3,3 +3,4 @@
 *.pyo
 *.ttf
 .idea/
+tmp.py
