@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # coding: utf-8
+import re
+
+c = re.compile('(.)(.)\1(.)')
 
 def get_patterns(word):
     patterns = []
@@ -13,4 +16,5 @@ def get_patterns(word):
     return ''.join(patterns)
 
 
-get_patterns('abac')
+a = get_patterns('abac')
+print(a)
