@@ -9,7 +9,9 @@ class Msg(object):
         pass
 
     def send(self):
-        return "success"class TextMsg(Msg):
+        return "success"
+
+class TextMsg(Msg):
 
     def __init__(self, toUserName, fromUserName, content):
         self.__dict = dict()
