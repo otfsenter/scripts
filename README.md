@@ -49,6 +49,7 @@ the configuration contains mysql for starting the container of wordpress.
 * what: display the real time traffic, use tkinter make GUI
 * how to run: click start button after run the script
 * frequency: 1/s
+* bug: some problem need fix, the incoming and outgoing traffic are the same
 
 ## [reminder_for_sleep.py](https://github.com/otfsenter/scripts/blob/master/reminder_for_sleep.py)
 
