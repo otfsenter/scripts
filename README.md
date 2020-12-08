@@ -2,7 +2,7 @@
 
 ## [auto move files](https://github.com/otfsenter/scripts/tree/master/auto_move_files)
 
-自动移动归档文件当指定的文件夹
+move files to different directories automatically
 
 auto mv files to special directory
 
@@ -17,11 +17,11 @@ nginx.sh
 
 * .nojekyll
 
-指定 index.html 为首页
+indicate the index.html for entry
 
 * favicon.ico
 
-网站标签左边的图片
+the favicon for idlepig.cn
 
 ## [java](https://github.com/otfsenter/scripts/tree/master/java)
 
@@ -36,18 +36,23 @@ the configuration of nginx in aliyun server with https
 
 ## [delimiters.py](https://github.com/otfsenter/scripts/blob/master/delimiters.py)
 
-自定义实现的多个分隔符分割一段字符串
+customize algorithm to split a string with multiple separator
 
 ## [docker-compose.yml](https://github.com/otfsenter/scripts/blob/master/docker-compose.yml)
 
-启动 wordpress 容器的配置，包含 mysql
+the configuration contains mysql for starting the container of wordpress.
 
 ## [flow_real_time.py](https://github.com/otfsenter/scripts/blob/master/flow_real_time.py)
 
-* python版本：python3
-* 第三方库：psutil
-* 是什么：显示实时的流量，用 tkinter 做了一个图形界面，
-* 怎么运行：点击运行脚本之后，点击 start
-* 频率：一秒刷新一次
+* python version: python3
+* third modules: psutil
+* what: display the real time traffic, use tkinter make GUI
+* how to run: click start button after run the script
+* frequency: 1/s
 
-## 
+## [reminder_for_sleep.py](https://github.com/otfsenter/scripts/blob/master/reminder_for_sleep.py)
+
+* use tkinter
+* prompt me to sleep with black background and white 100 size font
+* show 5 seconds
+* pop the prompt in 0 hour
