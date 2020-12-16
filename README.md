@@ -57,3 +57,15 @@ the configuration contains mysql for starting the container of wordpress.
 * prompt me to sleep with black background and white 100 size font
 * show 5 seconds
 * pop the prompt in 0 hour
+
+
+## [log.py](https://github.com/otfsenter/scripts/blob/master/log.py)
+
+usage:
+
+```python
+from log import logger
+
+for i in range(10):
+    logger.info(str(i))
+```

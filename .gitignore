@@ -4,3 +4,4 @@
 *.ttf
 .idea/
 tmp.py
+output.log
