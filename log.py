@@ -1,5 +1,4 @@
 import logging
-# RotatingFileHandlers是日志回滚的类，防止日志过大
 from logging.handlers import RotatingFileHandler
 
 LOG_FILENAME = 'output.log'
@@ -11,13 +10,17 @@ def set_logger():
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter(
         '%(asctime)s: '
-        '%(levelname)s:%(name)s:%(message)s')
+        '%(levelname)s:'
+        '%(name)s:'
+        '%(message)s'
+    )
 
     file_handler = RotatingFileHandler(
         filename=LOG_FILENAME,
         maxBytes=5 * 1024 * 1024,
         backupCount=3,
-        encoding='utf-8')
+        encoding='utf-8'
+    )
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.INFO)
     logger.addHandler(file_handler)
