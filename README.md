@@ -58,6 +58,12 @@ the configuration contains mysql for starting the container of wordpress.
 * show 5 seconds
 * pop the prompt in 0 hour
 
+## [todo_reminder.py](https://github.com/otfsenter/scripts/blob/master/todo_reminder.py)
+
+* use tkinter
+* prompt me to sleep with black background and white 25 size font
+* show 20 seconds
+
 
 ## [log.py](https://github.com/otfsenter/scripts/blob/master/log.py)
 
