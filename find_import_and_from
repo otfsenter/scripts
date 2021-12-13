@@ -1,0 +1,45 @@
+import ast
+from typing import Any
+
+code = """
+import os
+os.system('ls')
+
+print('a')"""
+
+
+class Analyser(ast.NodeVisitor):
+    def __init__(self):
+        self.stats = {
+            "import": [],
+            "from": [],
+        }
+
+    def visit_Import(self, node: ast.Import) -> Any:
+        for alias in node.names:
+            print(alias.name)
+            self.stats["import"].append(alias.name)
+        self.generic_visit(node)
+
+    def visit_ImportFrom(self, node: ast.ImportFrom) -> Any:
+        for alias in node.names:
+            self.stats["from"].append(alias.name)
+        self.generic_visit(node)
+
+
+def test_for_import(code: str) -> bool:
+    """Look for import or from statements."""
+    try:
+        if isinstance(code, list):
+            code = "\n".join(code)
+        tree = ast.parse(code)
+        print(tree)
+    except Exception:
+        print("Cannot parse code to find imports")
+        return False
+    analyser = Analyser()
+    analyser.visit(tree)
+    return bool(len(analyser.stats["import"])) or bool(len(analyser.stats["from"]))
+
+a = test_for_import(code)
+print(a)
