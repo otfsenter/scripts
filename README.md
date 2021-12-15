@@ -75,3 +75,7 @@ from log import logger
 for i in range(10):
     logger.info(str(i))
 ```
+
+# [find_import_and_from](https://github.com/otfsenter/scripts/blob/master/find_import_and_from)
+
+find import and from word in python file
