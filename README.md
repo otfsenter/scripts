@@ -1,6 +1,6 @@
 # Python execrise scripts
 
-## [ssh-copy-id.md](https://github.com/otfsenter/scripts/tree/master/auto_move_files.md)
+## [ssh-copy-id.md](https://github.com/otfsenter/scripts/tree/master/ssh-copy-id.md)
 
 
 ```bash
