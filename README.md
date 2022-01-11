@@ -1,5 +1,12 @@
 # Python execrise scripts
 
+## [ssh-copy-id.md](https://github.com/otfsenter/scripts/tree/master/auto_move_files.md)
+
+
+```bash
+./ssh-copy-id.expect root@your_ip
+```
+
 ## [auto move files](https://github.com/otfsenter/scripts/tree/master/auto_move_files)
 
 move files to different directories automatically
