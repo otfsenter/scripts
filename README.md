@@ -1,3 +1,9 @@
+```mermaid
+flowchart TD
+A[start] --> B[next]
+B --> C[next next]
+```
+
 # Python execrise scripts
 
 ## [ssh-copy-id.md](https://github.com/otfsenter/scripts/tree/master/ssh-copy-id.md)
